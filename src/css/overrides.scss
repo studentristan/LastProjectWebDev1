@@ -1,0 +1,289 @@
+// https://stackoverflow.com/questions/6502313/when-using-sass-how-can-i-import-a-file-from-a-different-directory
+@import 'foundation.min.css';
+@import 'utility';
+@import 'animations';
+
+
+
+@font-face {
+  font-family: "moon";
+  src: url("./../fonts/Moon20-Regular.woff2");
+}
+
+.backdrop {
+  background-color: black;
+
+}
+
+#background {
+  background-color: #222;
+}
+
+
+p, h1, h2, h3, h4, h5, li{
+  font-family: moon;
+  margin: 0 10px 0 25px;
+  color: $txtColor;
+}
+
+h1 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 25px;
+}
+
+h4 {
+  font-size:15px;
+}
+
+span, a{
+  border-bottom: 2px dotted $txtColor;
+  color: $txtColor;
+}
+
+.top-line {
+  display: inline;
+  margin-left: 15px;
+}
+.bolderthanu {
+  border-bottom: none;
+}
+
+.bolderthanu:active {
+  font-weight: 300;
+  color: #cc4b37;
+}
+.name {
+  position: absolute;
+  right: 20%;
+}
+
+.allignmenthelp {
+  text-align: right;
+}
+
+label {
+  font-family: moon;
+  color: $txtColor;
+  font-size: 25px;
+}
+
+.inline {
+  display: inline;
+}
+
+#centerme {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#background{
+  flex-grow: 2;
+}
+
+.backdrop {
+  position: absolute;
+  visibility: hidden;
+}
+
+.coolButtonColumn{
+  height: 12rem;
+  width: 100%;
+  text-align: center;
+}
+/*
+Title
+
+I wanted to make the title do that italics thing he had on all
+of the subheadings, but it's REALLY HARD if you don't know about
+3D css transforms. I chose instead to give it
+italics and angle it, and... then threw it out. This is the good
+version. :)
+ */
+
+.title {
+  transition: transform .2s ease-in-out;
+}
+
+.title:hover, .title:focus {
+  transform: rotateY(30deg) rotateZ(-10deg) rotateX(-10deg);
+  text-shadow: black 20px 20px 5px;
+}
+
+/*
+My Name
+
+This one is meant to emulate the buttons at the very bottom
+of the page on the natours site, but with a slight twist,
+and my name in it's place.
+ */
+
+span>a{
+  position: absolute;
+  border-bottom: 2px dotted $txtColor;
+  color: $txtColor;
+  background-color: #222;
+
+  width: 105px;
+  transition: transform .2s ease-in-out;
+
+}
+
+
+
+span>a:hover, span>a:focus {
+  position: absolute;
+  transform: scale(1.5) rotate(10deg);
+  color: #214ec0;
+  box-shadow: #0a0a0a 10px 10px 5px;
+
+}
+
+/*
+Buttone - the first button
+
+This was reconstructed using a code example the original
+creator of the website posted on a forum. Even with the
+code in front of me, CSS and SCSS animation is HARD. I'm
+glad you forced us to use SCSS because it is so much easier
+to do this stuff with it.
+
+*/
+
+
+.buttone:link, .buttone:visited {  //without the visited, if the link goes somewhere all the css stops working after first click
+  padding: 15px ;
+  margin-top: 25px;
+  border-radius: 100px;
+  transition: all .2s;
+  position: absolute;
+  background-color: #fff;
+  color: #777;
+  right: -6%;
+
+}
+
+.buttone:hover {  //on hover
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.buttone:active { //on click - took me forever to get this right for some reason
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.buttone::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all .4s;
+  //next two lines are what give the fadey thing color.
+  background-color: #fff;
+  color: #777;
+  //background-color: #3ADB76FF; //for testing.
+
+}
+
+.buttone:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.buttone-animated{ // if this isn't a separate class, uglification takes this and adds it to the top, so it does the fade-in animation when the page loads
+  animation: fadeInUp 5s ease-out;
+  animation-fill-mode: backwards;
+}
+
+#reallyreallyannoying { //it just wouldn't position right, so I had to select it's div separately
+  position: relative;
+  left: -50%;
+}
+
+/*
+Butttwo - the second button
+
+Not technically recreating anything, but... it spins!!
+
+*/
+
+.butttwo {
+  animation: spin 10s linear infinite; //assigns the animation
+  animation-play-state: paused; //makes it so it isn't going all the time
+}
+
+.butttwo:hover {
+  animation-play-state: running; //starts animation on hover
+}
+
+/*
+Buttthree - the third button
+
+This is the "Read all stories ->" button from his website.
+It's a slight raise transform, with the background
+and text color flipping. it also slightly dips when clicked.
+
+*/
+.buttthree {
+  position: absolute;
+  transition: transform .2s ease-in-out;
+  padding: 15px 15px 0 15px;
+  right: 45%;
+  margin: auto;
+}
+
+.buttthree:hover, .buttthree:focus {
+  background-color: #fff;
+  color: #222;
+  border-bottom-color: #222;
+  transform: translateY(-5px);
+}
+
+.buttthree:active {
+  transform: translateY(2px);
+}
+
+.bolderthanu:hover {
+  color: white;
+}
+
+/*screen size fixers - you know how it goes*/
+
+.bottomFiller {
+
+}
+
+@media (min-width: 450px) {
+  h1 {
+    font-size: 75px;
+  }
+}
+
+@media (min-width: 700px) {
+
+  .backdrop {
+    position: static;
+    visibility: visible;
+  }
+
+  span>a{
+    right: 5px;
+  }
+}
+
+
